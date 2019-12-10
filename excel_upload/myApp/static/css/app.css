@@ -1,0 +1,14 @@
+body {
+ 	background-color: #5c848e;
+}
+.navbar{
+	background-color:#b07854
+}
+.nav-link{
+	color: #424242;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.button{
+	border-radius: 24px;
+}
