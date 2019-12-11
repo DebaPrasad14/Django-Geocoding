@@ -9,15 +9,17 @@ class Home(TemplateView):
 
 
 def file_upload(request):
-	if request.method == 'POST' and request.FILES['document']:
-		myfile = request.FILES['document']
-
-		if not myfile.name.endswith('.xls') and not myfile.name.endswith('.xlsx'):
-			messages.error(request, ('Please upload only excel file!'))
+	if request.method == 'POST':
+		if not request.FILES.get('document'):
+			messages.error(request, ('You have not selected any File. Please select a file to upload!'))
 		else:
-			fs = FileSystemStorage()
-			filename = fs.save(myfile.name, myfile)
-			url = fs.url(filename)
-			messages.success(request, ('Congrats !!! File uploaded successfully!'))
-			return render(request, 'file_upload.html', {'url': url} )
+			myfile = request.FILES.get('document')
+			if not myfile.name.endswith('.xls') and not myfile.name.endswith('.xlsx'):
+				messages.error(request, ('Please upload only excel file!'))
+			else:
+				fs = FileSystemStorage()
+				filename = fs.save(myfile.name, myfile)
+				url = fs.url(filename)
+				messages.success(request, ('Congrats !!! File uploaded successfully!'))
+				return render(request, 'file_upload.html', {'url': url} )
 	return render(request, 'file_upload.html')
