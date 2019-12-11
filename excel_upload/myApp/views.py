@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
-import openpyxl
 from django.conf import settings
 import pandas as pd
 import googlemaps
@@ -48,3 +47,4 @@ def get_geocode_result(full_file_path):
 		except:
 			lat = None
 			lon = None
+	return df
